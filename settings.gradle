@@ -1,0 +1,4 @@
+rootProject.name = 'epf'
+include 'kit'
+include 'kit-excel'
+include 'project-template'

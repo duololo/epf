@@ -1,0 +1,6 @@
+dependencies {
+    compile project(":kit")
+    compile 'org.apache.poi:poi:3.7'
+    compile 'org.apache.poi:poi-ooxml:3.7'
+    compile 'org.apache.poi:poi-ooxml-schemas:3.7'
+}

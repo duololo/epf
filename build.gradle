@@ -1,0 +1,33 @@
+subprojects {
+    group 'com.zfer'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.5
+    targetCompatibility = 1.5
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+    repositories {
+        maven { url 'http://maven.oschina.net/content/groups/public/' }
+    }
+
+    jar {
+        manifest {
+            attributes("Implementation-Title": "Gradle")
+        }
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.11'
+    }
+
+
+
+    // 显示当前项目下所有用于 compile 的 jar.
+    task listJars(description: 'Display all compile jars.') << {
+        configurations.compile.each { File file -> println file.name }
+    }
+}
