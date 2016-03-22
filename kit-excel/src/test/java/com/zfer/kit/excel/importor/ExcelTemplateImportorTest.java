@@ -47,13 +47,13 @@ public class ExcelTemplateImportorTest {
 	
 	@Test
 	public void testImportExcel2003() throws Exception {
-		
-		ExcelAbstractImportor<StudentNullAnnoVO> util = new ExcelTemplateImportor<StudentNullAnnoVO>();// 创建excel工具类
-		util.setExcelEntityClass(StudentNullAnnoVO.class);
-		util.setTemplateExcelInputStream(templateFis);
+		ExcelAbstractImportor<StudentNullAnnoVO> util = new ExcelTemplateImportor<StudentNullAnnoVO>();// 创建excel导入工具类
+		util.setExcelEntityClass(StudentNullAnnoVO.class);//设置导出的实体类型
+		util.setTemplateExcelInputStream(templateFis);//设置模板
 		
 		util.importExcel("学生信息0", fis2003);// 导入
-		List<StudentNullAnnoVO> list = util.getExcelRightDataList();
+		List<StudentNullAnnoVO> list = util.getExcelRightDataList();//获取校验正确的数据
+		List<StudentNullAnnoVO> allList = util.getExcelAllDataList();//获取所有的数据
 		
 		assertEquals(
 				list.toString(),

@@ -28,10 +28,13 @@ import java.util.regex.Pattern;
 public class StrKit {
 	
 	private StrKit(){}
-	
+
 	/**
 	 * 首字母变小写
-	 */
+     * <p>the first char to lower<br>
+	 * @param str the want to change string
+	 * @return return changed string
+     */
 	public static String firstCharToLowerCase(String str) {
 		char firstChar = str.charAt(0);
 		if (firstChar >= 'A' && firstChar <= 'Z') {
@@ -41,10 +44,13 @@ public class StrKit {
 		}
 		return str;
 	}
-	
-	/**
-	 * 首字母变大写
-	 */
+
+    /**
+     * 首字母变大写
+     * <p>the first char to upper<br>
+     * @param str the want to change string
+     * @return return changed string
+     */
 	public static String firstCharToUpperCase(String str) {
 		char firstChar = str.charAt(0);
 		if (firstChar >= 'a' && firstChar <= 'z') {
@@ -54,16 +60,20 @@ public class StrKit {
 		}
 		return str;
 	}
-	
-	/**
-	 * 字符串为 null 或者为  "" 时返回 true
-	 */
+
+    /**
+     * 字符串为 null 或者为  "" 时返回 true
+     * @param str judge words
+     * @return if str is null or "" return true,else false
+     */
 	public static boolean isBlank(String str) {
 		return str == null || "".equals(str.trim());
 	}
 	
 	/**
 	 * 如果其中一个字符串为 null 或者为  "" 时返回 true
+     * @param strings judge words
+     * @return if one str is null or "" return true,else false
 	 */
 	public static boolean isBlank(String... strings) {
 		if (strings == null)
@@ -89,6 +99,15 @@ public class StrKit {
 				return false;
 		return true;
 	}
+
+    public static boolean isNull(Object... paras) {
+        if (paras == null)
+            return true;
+        for (Object obj : paras)
+            if (obj == null)
+                return true;
+        return false;
+    }
 	
 	public static boolean notNull(Object... paras) {
 		if (paras == null)
@@ -97,15 +116,6 @@ public class StrKit {
 			if (obj == null)
 				return false;
 		return true;
-	}
-	
-	public static boolean isNull(Object... paras) {
-		if (paras == null)
-			return true;
-		for (Object obj : paras)
-			if (obj == null)
-				return true;
-		return false;
 	}
 	
 	//toutf8string，js可以用decodeURI(msg)反向解码
@@ -150,6 +160,7 @@ public class StrKit {
 	public static String getStrTrim(Object obj){
 		return getStrTrim(obj,"");
 	}
+
 	public static String getStrTrim(Object obj,String defaultStr){
 		return (obj == null || "".equals(obj.toString().trim())) ? defaultStr : obj.toString().trim();
 	}
