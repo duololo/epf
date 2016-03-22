@@ -2,13 +2,14 @@
 ------
 ## 功能说明
 将excel中的行数据，导入成List&lt;VO>
-##目录说明
+## 目录说明
 - kit 模块：基础工具类
 - kit-excel 模块：excel导入导出工具类
 ## 使用
 1. git clone https://git.oschina.net/duololo/epf.git
 3. 导入到IntelliJ Idea中
 3. 运行com.zfer.kit.excel.importor.ExcelTemplateImportorTest
+
 相关测试方法
 
 下面是一个测试示例：
