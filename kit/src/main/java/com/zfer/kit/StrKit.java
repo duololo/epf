@@ -280,7 +280,8 @@ public class StrKit {
 		}
 		
 		if(obj instanceof BigDecimal){
-			rs = ((BigDecimal)obj).toString();
+            BigDecimal bigDecimal = ((BigDecimal)obj);
+			rs = bigDecimal.toString();
 		}
 		else if(obj instanceof java.sql.Date 
 				|| obj instanceof java.sql.Time
