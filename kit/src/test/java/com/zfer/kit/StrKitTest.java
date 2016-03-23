@@ -152,15 +152,15 @@ public class StrKitTest {
     }
 
     @Test
-    public void testGetStrs(){
+    public void testGetSplitStr(){
         List<String> stringList = new ArrayList<String>();
         stringList.add("x1");
         stringList.add("x2");
         stringList.add("x3");
         stringList.add("x4");
 
-        assertEquals("x1;x2;x3;x4",StrKit.getStrs(stringList,";"));
-        assertEquals("x1-x2-x3-x4",StrKit.getStrs(stringList,"-"));
+        assertEquals("x1;x2;x3;x4",StrKit.getSplitStr(stringList,";"));
+        assertEquals("x1-x2-x3-x4",StrKit.getSplitStr(stringList,"-"));
     }
 
     @Test

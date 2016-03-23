@@ -18,6 +18,7 @@ package com.zfer.kit;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -71,7 +72,6 @@ public class StrKit {
      */
 	public static boolean isBlank(String str) {
 		return StringUtils.isBlank(str);
-		//return str == null || "".equals(str.trim());
 	}
 	
 	/**
@@ -157,11 +157,11 @@ public class StrKit {
 				byte[] b;
 				try {
 					b = Character.toString(c).getBytes("utf-8");
-				}catch (Exception ex) {
+				} catch (UnsupportedEncodingException e) {
 					b = new byte[0];
 				}
 
-                for (byte aB : b) {
+				for (byte aB : b) {
                     int k = aB;
                     if (k < 0) {
                         k += 256;
@@ -258,7 +258,7 @@ public class StrKit {
     /**
      *  从List中 拼接字符串 fix做结合
      */
-	public static String getStrs(List<String> strList,String fix){
+	public static String getSplitStr(List<String> strList,String fix){
 		StringBuilder sb = new StringBuilder();
 		for(int i=0;i<strList.size();i++){
 			String str = strList.get(i);
@@ -283,7 +283,7 @@ public class StrKit {
 		}
 		
 		if(obj instanceof BigDecimal){
-            BigDecimal bigDecimal = ((BigDecimal)obj);
+            BigDecimal bigDecimal = (BigDecimal)obj;
             rs = bigDecimal.toString();
 		}else if(obj instanceof java.sql.Date
 				|| obj instanceof java.sql.Time
