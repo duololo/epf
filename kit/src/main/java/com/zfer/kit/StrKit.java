@@ -17,7 +17,6 @@
 package com.zfer.kit;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,7 +26,9 @@ import java.util.regex.Pattern;
  */
 public class StrKit {
 	
-	private StrKit(){}
+	private StrKit(){
+
+    }
 
 	/**
 	 * 首字母变小写
@@ -76,11 +77,14 @@ public class StrKit {
      * @return if one str is null or "" return true,else false
 	 */
 	public static boolean isBlank(String... strings) {
-		if (strings == null)
-			return true;
-		for (String str : strings)
-			if (str == null || "".equals(str.trim()))
-				return true;
+		if (strings == null) {
+            return true;
+        }
+		for (String str : strings) {
+            if (str == null || "".equals(str.trim())) {
+                return true;
+            }
+        }
 		return false;
 	}
 	
@@ -90,40 +94,61 @@ public class StrKit {
 	public static boolean notBlank(String str) {
 		return !(str == null || "".equals(str.trim()));
 	}
-	
+
+    /**
+     * 所有字符串不为 null 而且不为  "" 时返回 true
+     */
 	public static boolean notBlank(String... strings) {
-		if (strings == null)
+		if (strings == null) {
 			return false;
-		for (String str : strings)
-			if (str == null || "".equals(str.trim()))
-				return false;
+		}
+		for (String str : strings) {
+            if (str == null || "".equals(str.trim())) {
+                return false;
+            }
+        }
 		return true;
 	}
 
+    /**
+     * 所有字符串为 null 时返回 true
+     */
     public static boolean isNull(Object... paras) {
-        if (paras == null)
+        if (paras == null) {
             return true;
-        for (Object obj : paras)
-            if (obj == null)
+        }
+        for (Object obj : paras) {
+            if (obj == null) {
                 return true;
+            }
+        }
         return false;
     }
-	
+
+    /**
+     * 所有字符串不为 null 时返回 true
+     */
 	public static boolean notNull(Object... paras) {
-		if (paras == null)
-			return false;
-		for (Object obj : paras)
-			if (obj == null)
-				return false;
+		if (paras == null) {
+            return false;
+        }
+		for (Object obj : paras) {
+            if (obj == null) {
+                return false;
+            }
+        }
 		return true;
 	}
-	
-	//toutf8string，js可以用decodeURI(msg)反向解码
+
+    /**
+     *  to utf8 string
+     *  js可以用decodeURI(msg)反向解码
+     */
 	public static String toUtf8String(String s) {
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
-			if (c >= 0 && c <= 255) {
+			if (c <= 255) {
 				sb.append(c);
 			}
 			else {
@@ -135,59 +160,71 @@ public class StrKit {
 					b = new byte[0];
 				}
 
-				for (int j = 0; j < b.length; j++) {
-					int k = b[j];
-					if (k < 0)
-						k += 256;
-					sb.append("%" + Integer.toHexString(k).toUpperCase());
-				}
+                for (byte aB : b) {
+                    int k = aB;
+                    if (k < 0) {
+                        k += 256;
+                    }
+                    sb.append("%").append(Integer.toHexString(k).toUpperCase());
+                }
 			}
 		}
 		return sb.toString();
 	}
-	
-	//获取字符串对象，为Null或者为空字符串,返回""
+
+    /**
+     * 获取字符串对象，为Null或者为空字符串,返回""
+     * 可能会有空白字符产生
+     */
 	public static String getStr(Object obj){
 		return getStr(obj,"");
 	}
 	
-	//获取字符串对象，为Null或者为空字符串,返回defaultString
+	/**
+	 * 获取字符串对象，为Null或者为空字符串,返回defaultString
+     * 可能会有空白字符产生
+	 */
 	public static String getStr(Object obj,String defaultStr){
 		return (obj == null || "".equals(obj.toString().trim())) ? defaultStr : obj.toString();
 	}
-	
-	/* 可能会有空白字符产生 */
-	public static String getStrTrim(Object obj){
-		return getStrTrim(obj,"");
+
+    /**
+     * 获取字符串对象，为Null或者为空字符串,返回""，并且会trim
+     */
+	public static String getStrAndTrim(Object obj){
+		return getStrAndTrim(obj,"");
 	}
 
-	public static String getStrTrim(Object obj,String defaultStr){
-		return (obj == null || "".equals(obj.toString().trim())) ? defaultStr : obj.toString().trim();
+    /**
+     * 获取字符串对象，为Null或者为空字符串,返回defaultString，并且会trim
+     */
+	public static String getStrAndTrim(Object obj,String defaultStr){
+		return (obj == null || "".equals(obj.toString().trim())) ? defaultStr.trim() : obj.toString().trim();
 	}
-	
-	//多个相同的字符替换：比如将其中所有的问号，挨个换成数组内的值
+
+    /**
+     *  多个相同的字符替换：比如将其中所有的问号，挨个换成数组内的值
+     */
 	public static String replace(String str,String fix,String[] array){
-		for(int i=0;i<array.length;i++){
-			str = str.replaceFirst(fix, array[i]);
-		}
+        for (String anArray : array) {
+            str = str.replaceFirst(fix, anArray);
+        }
 		return str;
 	}
-	
-	//对所有的问号替换
+
+    /**
+     * 对所有的问号替换
+     */
 	public static String replace(String str,String[] array){
 		str = StrKit.replace(str,"\\?",array);
 		return str;
 	}
-	
-	public static String replaceSql(String str,String[] array){
-		for(int i=0;i<array.length;i++){
-			str = str.replaceFirst("\\?", "'" + array[i] + "'");
-		}
-		return str;
-	}
-	
-	
-	//是否包含中文
+
+
+
+    /**
+     * 是否包含中文
+     */
 	public static boolean containsChineseChar(String str){
        boolean temp = false;
        Pattern p = Pattern.compile("[\u4e00-\u9fa5]"); 
@@ -197,9 +234,11 @@ public class StrKit {
        }
        return temp;
 	}
-	
-	//将所有对象中不为空的第一个字符串筛选出来，如果都为空，返回""
-	public static String getNotNullStr(String... paras) {
+
+    /**
+     * 将所有对象中不为空的第一个字符串筛选出来，如果都为空，返回""
+     */
+	public static String getNotNullFirstStr(String... paras) {
 		String rs = "";
 		if (paras == null){
 			return rs;
@@ -212,10 +251,12 @@ public class StrKit {
 		}
 		return rs;
 	}
-	
-	//从List中 拼接字符串 fix做结合
+
+    /**
+     *  从List中 拼接字符串 fix做结合
+     */
 	public static String getStrs(List<String> strList,String fix){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for(int i=0;i<strList.size();i++){
 			String str = strList.get(i);
 			if(StrKit.notBlank(str)){
@@ -227,8 +268,10 @@ public class StrKit {
 		}
 		return sb.toString();
 	}
-	
-	//增加一个方法，处理返回的对象，形成String
+
+    /**
+     * 增加一个方法，处理返回的对象，形成String
+     */
 	public static String getStrByObj(Object obj,String dateFormat){
 		String rs = "";
 		
@@ -240,32 +283,23 @@ public class StrKit {
 			rs = ((BigDecimal)obj).toString();
 		}
 		else if(obj instanceof java.sql.Date 
-				|| obj instanceof java.util.Date
 				|| obj instanceof java.sql.Time
-				|| obj instanceof java.sql.Timestamp){
-			rs = DateKit.toStr(DateKit.transDate(obj),dateFormat);;
+				|| obj instanceof java.sql.Timestamp
+				|| obj instanceof java.util.Date){
+			rs = DateKit.toStr(DateKit.transDate(obj),dateFormat);
 		}
 		else{
 			rs = obj.toString();
 		}
-		
+
 		return rs;
 	}
-	
-	//增加一个方法，处理返回的对象，形成String
+
+    /**
+     *  增加一个方法，处理返回的对象，形成String
+     */
 	public static String getStrByObj(Object obj){
 		return getStrByObj(obj,DateKit.dateFormat);
-	}
-	
-	public static void main(String[] args) {
-		String str = "select code,?,? from aa where code=?";
-		String str11 = StrKit.replace(str, new String[]{"222","333","444"});
-		System.out.println(str11);
-		
-		List<String> strList = new ArrayList<String>();
-		strList.add("ssss3");
-		String strs = StrKit.getStrs(strList, ";");
-		System.out.println(strs);
 	}
 }
 
