@@ -150,13 +150,11 @@ public class StrKit {
 			char c = s.charAt(i);
 			if (c <= 255) {
 				sb.append(c);
-			}
-			else {
+			}else {
 				byte[] b;
 				try {
 					b = Character.toString(c).getBytes("utf-8");
-				}
-				catch (Exception ex) {
+				}catch (Exception ex) {
 					b = new byte[0];
 				}
 
@@ -206,18 +204,20 @@ public class StrKit {
      *  多个相同的字符替换：比如将其中所有的问号，挨个换成数组内的值
      */
 	public static String replace(String str,String fix,String[] array){
+        String rs = str;
         for (String anArray : array) {
-            str = str.replaceFirst(fix, anArray);
+            rs = rs.replaceFirst(fix, anArray);
         }
-		return str;
+		return rs;
 	}
 
     /**
      * 对所有的问号替换
      */
 	public static String replace(String str,String[] array){
-		str = StrKit.replace(str,"\\?",array);
-		return str;
+		String rs = str;
+		rs = StrKit.replace(rs,"\\?",array);
+		return rs;
 	}
 
 
@@ -281,15 +281,13 @@ public class StrKit {
 		
 		if(obj instanceof BigDecimal){
             BigDecimal bigDecimal = ((BigDecimal)obj);
-			rs = bigDecimal.toString();
-		}
-		else if(obj instanceof java.sql.Date 
+            rs = bigDecimal.toString();
+		}else if(obj instanceof java.sql.Date
 				|| obj instanceof java.sql.Time
 				|| obj instanceof java.sql.Timestamp
 				|| obj instanceof java.util.Date){
 			rs = DateKit.toStr(DateKit.transDate(obj),dateFormat);
-		}
-		else{
+		}else{
 			rs = obj.toString();
 		}
 
