@@ -28,5 +28,6 @@
     <orderEntry type="library" name="Gradle: org.apache.geronimo.specs:geronimo-stax-api_1.0_spec:1.0" level="project" />
     <orderEntry type="library" name="Gradle: xml-apis:xml-apis:1.0.b2" level="project" />
     <orderEntry type="library" name="Gradle: stax:stax-api:1.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
   </component>
 </module>

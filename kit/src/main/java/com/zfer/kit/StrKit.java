@@ -16,6 +16,8 @@
 
 package com.zfer.kit;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -68,7 +70,8 @@ public class StrKit {
      * @return if str is null or "" return true,else false
      */
 	public static boolean isBlank(String str) {
-		return str == null || "".equals(str.trim());
+		return StringUtils.isBlank(str);
+		//return str == null || "".equals(str.trim());
 	}
 	
 	/**
@@ -81,7 +84,7 @@ public class StrKit {
             return true;
         }
 		for (String str : strings) {
-            if (str == null || "".equals(str.trim())) {
+            if (isBlank(str)) {
                 return true;
             }
         }
@@ -92,7 +95,7 @@ public class StrKit {
 	 * 字符串不为 null 而且不为  "" 时返回 true
 	 */
 	public static boolean notBlank(String str) {
-		return !(str == null || "".equals(str.trim()));
+		return StringUtils.isNotBlank(str);
 	}
 
     /**
@@ -103,7 +106,7 @@ public class StrKit {
 			return false;
 		}
 		for (String str : strings) {
-            if (str == null || "".equals(str.trim())) {
+            if (isBlank(str)) {
                 return false;
             }
         }
@@ -183,7 +186,7 @@ public class StrKit {
      * 可能会有空白字符产生
 	 */
 	public static String getStr(Object obj,String defaultStr){
-		return (obj == null || "".equals(obj.toString().trim())) ? defaultStr : obj.toString();
+		return (obj == null || isBlank(obj.toString())) ? defaultStr : obj.toString();
 	}
 
     /**
@@ -197,7 +200,7 @@ public class StrKit {
      * 获取字符串对象，为Null或者为空字符串,返回defaultString，并且会trim
      */
 	public static String getStrAndTrim(Object obj,String defaultStr){
-		return (obj == null || "".equals(obj.toString().trim())) ? defaultStr.trim() : obj.toString().trim();
+		return (obj == null || isBlank(obj.toString())) ? defaultStr.trim() : obj.toString().trim();
 	}
 
     /**
@@ -229,7 +232,7 @@ public class StrKit {
        boolean temp = false;
        Pattern p = Pattern.compile("[\u4e00-\u9fa5]"); 
        Matcher m = p.matcher(str); 
-       if(m.find()){ 
+       if(m.find()){
            temp = true;
        }
        return temp;
