@@ -3,8 +3,6 @@ subprojects {
     version '1.0-SNAPSHOT'
 
     apply plugin: 'java'
-    apply plugin: 'checkstyle'
-    apply plugin: 'findbugs'
 
     sourceCompatibility = 1.5
     targetCompatibility = 1.5
@@ -27,11 +25,45 @@ subprojects {
     }
 
 
+    apply plugin: 'checkstyle'//质量检查
+    apply plugin: 'pmd'
+    apply plugin: 'findbugs'
+
     checkstyle{
         configFile = file("$rootProject.projectDir/config/checkstyle/default-checks.xml")
     }
 
-    findbugs{
+    findbugs {
         toolVersion = "2.0.3"//这个版本兼容jdk6,jdk7的话 也可以使用3.0.1
+        //sourceSets = [sourceSets.main]
+        //ignoreFailures = true
+        //reportsDir = file("$project.buildDir/findbugsReports")
+        //effort = "max"
+        //reportLevel = "high"
+        //visitors = ["FindSqlInjection", "SwitchFallthrough"]
+        //omitVisitors = ["FindNonShortCircuit"]
+        //includeFilter = file("$rootProject.projectDir/config/findbugs/includeFilter.xml")
+        //excludeFilter = file("$rootProject.projectDir/config/findbugs/excludeFilter.xml")
+    }
+
+    tasks.withType(FindBugs) {//Checkstyle, PMD
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+
+    apply plugin: 'jacoco'//测试覆盖率检查，在test之后执行
+
+    jacoco {
+        toolVersion = "0.7.2.+"
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled = false
+            csv.enabled = false
+            html.enabled = true
+        }
     }
 }
