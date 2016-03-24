@@ -213,7 +213,8 @@ public class StrKit {
      * 获取字符串对象，为Null或者为空字符串,返回defaultString
      * 可能会有空白字符产生
      *
-     * @param obj,defaultStr input param
+     * @param obj input param
+     * @param defaultStr input param
      * @return string of obj,if is blank return defaultStr
      */
     public static String getStr(Object obj, String defaultStr) {
@@ -233,7 +234,8 @@ public class StrKit {
     /**
      * 获取字符串对象，为Null或者为空字符串,返回defaultString，并且会trim
      *
-     * @param obj,defaultStr param
+     * @param obj input param
+     * @param defaultStr param
      * @return string of obj,if is blank return defaultStr and trim
      */
     public static String getStrAndTrim(Object obj, String defaultStr) {
@@ -243,7 +245,9 @@ public class StrKit {
     /**
      * 多个相同的字符替换：比如将其中所有的问号，挨个换成数组内的值
      *
-     * @param str,fix,array input param
+     * @param str input param
+     * @param fix input param
+     * @param array input param
      * @return replace str width array[i] and append by fix
      */
     public static String replace(String str, String fix, String[] array) {
@@ -257,7 +261,8 @@ public class StrKit {
     /**
      * 对所有的问号替换
      *
-     * @param str,array input param
+     * @param str input param
+     * @param array input param
      * @return replace str width array[i] and append by ?
      */
     public static String replace(String str, String[] array) {
@@ -306,7 +311,8 @@ public class StrKit {
     /**
      * 从List中 拼接字符串 fix做结合
      *
-     * @param strList,fix input param
+     * @param strList input param
+     * @param fix input param
      * @return return string of list append by fix
      */
     public static String getSplitStr(List<String> strList, String fix) {
@@ -326,7 +332,8 @@ public class StrKit {
     /**
      * 增加一个方法，处理返回的对象，形成String
      *
-     * @param obj,dateFormat input param
+     * @param obj input param
+     * @param dateFormat input param
      * @return return str by obj
      */
     public static String getStrByObj(Object obj, String dateFormat) {
