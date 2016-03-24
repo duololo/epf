@@ -3,6 +3,8 @@ subprojects {
     version '1.0-SNAPSHOT'
 
     apply plugin: 'java'
+    apply plugin: 'checkstyle'
+    apply plugin: 'findbugs'
 
     sourceCompatibility = 1.5
     targetCompatibility = 1.5
@@ -25,9 +27,11 @@ subprojects {
     }
 
 
+    checkstyle{
+        configFile = file("$rootProject.projectDir/config/checkstyle/default_checks.xml")
+    }
 
-    // 显示当前项目下所有用于 compile 的 jar.
-    task listJars(description: 'Display all compile jars.') << {
-        configurations.compile.each { File file -> println file.name }
+    findbugs{
+        toolVersion = "2.0.3"//这个版本兼容jdk6,jdk7的话 也可以使用3.0.1
     }
 }

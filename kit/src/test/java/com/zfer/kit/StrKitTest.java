@@ -165,8 +165,7 @@ public class StrKitTest {
 
     @Test
     public void testGetStrByObj(){
-        java.util.Date date = new Date();
-        date.setTime(1458704405425L);
+        java.util.Date date = new Date(1458704405425L);
 
         String str = StrKit.getStrByObj(date);
         assertEquals("2016-03-23",str);

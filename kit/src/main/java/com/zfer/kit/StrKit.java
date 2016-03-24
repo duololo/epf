@@ -26,14 +26,19 @@ import java.util.regex.Pattern;
 
 /**
  * StrKit.
+ * @author  yunshan
+ * @version 1.0
  */
 public class StrKit {
-	
-	private StrKit(){
 
+    /**
+     * init
+     */
+    private StrKit() {
+        super();
     }
 
-	/**
+    /**
 	 * 首字母变小写
      * <p>the first char to lower<br>
 	 * @param str the want to change string
@@ -93,6 +98,8 @@ public class StrKit {
 	
 	/**
 	 * 字符串不为 null 而且不为  "" 时返回 true
+     * @param str judge words
+     * @return 字符串不为 null 而且不为  "" 时返回 true
 	 */
 	public static boolean notBlank(String str) {
 		return StringUtils.isNotBlank(str);
@@ -100,6 +107,8 @@ public class StrKit {
 
     /**
      * 所有字符串不为 null 而且不为  "" 时返回 true
+     * @param strings judge words
+     * @return 所有字符串不为 null 而且不为  "" 时返回 true
      */
 	public static boolean notBlank(String... strings) {
 		if (strings == null) {
@@ -114,7 +123,9 @@ public class StrKit {
 	}
 
     /**
-     * 所有字符串为 null 时返回 true
+     * 所有对象为 null 时返回 true
+     * @param paras judge objects
+     * @return 所有对象为 null 时返回 true
      */
     public static boolean isNull(Object... paras) {
         if (paras == null) {
@@ -129,7 +140,9 @@ public class StrKit {
     }
 
     /**
-     * 所有字符串不为 null 时返回 true
+     * 所有对象不为 null 时返回 true
+     * @param paras judge objects
+     * @return 所有对象不为 null 时返回 true
      */
 	public static boolean notNull(Object... paras) {
 		if (paras == null) {
@@ -146,14 +159,16 @@ public class StrKit {
     /**
      *  to utf8 string
      *  js可以用decodeURI(msg)反向解码
+     * @param str want to change word
+     * @return utf8 string of str
      */
-	public static String toUtf8String(String s) {
+	public static String toUtf8String(String str) {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < s.length(); i++) {
-			char c = s.charAt(i);
+		for (int i = 0; i < str.length(); i++) {
+			char c = str.charAt(i);
 			if (c <= 255) {
 				sb.append(c);
-			}else {
+			} else {
 				byte[] b;
 				try {
 					b = Character.toString(c).getBytes("utf-8");
@@ -176,14 +191,18 @@ public class StrKit {
     /**
      * 获取字符串对象，为Null或者为空字符串,返回""
      * 可能会有空白字符产生
+     * @param obj input param
+     * @return string of obj
      */
-	public static String getStr(Object obj){
+	public static String getStr(Object obj) {
 		return getStr(obj,"");
 	}
 	
 	/**
 	 * 获取字符串对象，为Null或者为空字符串,返回defaultString
      * 可能会有空白字符产生
+     * @param obj,defaultStr input param
+     * @return string of obj,if is blank return defaultStr
 	 */
 	public static String getStr(Object obj,String defaultStr){
 		return (obj == null || isBlank(obj.toString())) ? defaultStr : obj.toString();
@@ -191,6 +210,8 @@ public class StrKit {
 
     /**
      * 获取字符串对象，为Null或者为空字符串,返回""，并且会trim
+     * @param obj input param
+     * @return string of obj,if is blank return defaultStr and trim
      */
 	public static String getStrAndTrim(Object obj){
 		return getStrAndTrim(obj,"");
@@ -198,13 +219,17 @@ public class StrKit {
 
     /**
      * 获取字符串对象，为Null或者为空字符串,返回defaultString，并且会trim
+     * @param obj,defaultStr param
+     * @return string of obj,if is blank return defaultStr and trim
      */
 	public static String getStrAndTrim(Object obj,String defaultStr){
 		return (obj == null || isBlank(obj.toString())) ? defaultStr.trim() : obj.toString().trim();
 	}
 
     /**
-     *  多个相同的字符替换：比如将其中所有的问号，挨个换成数组内的值
+     * 多个相同的字符替换：比如将其中所有的问号，挨个换成数组内的值
+     * @param str,fix,array input param
+     * @return replace str width array[i] and append by fix
      */
 	public static String replace(String str,String fix,String[] array){
         String rs = str;
@@ -216,6 +241,8 @@ public class StrKit {
 
     /**
      * 对所有的问号替换
+     * @param str,array input param
+     * @return replace str width array[i] and append by ?
      */
 	public static String replace(String str,String[] array){
 		String rs = str;
@@ -227,6 +254,8 @@ public class StrKit {
 
     /**
      * 是否包含中文
+     * @param str input param
+     * @return if contains Chinese Char return true,else false
      */
 	public static boolean containsChineseChar(String str){
        boolean temp = false;
@@ -240,6 +269,8 @@ public class StrKit {
 
     /**
      * 将所有对象中不为空的第一个字符串筛选出来，如果都为空，返回""
+     * @param paras input param
+     * @return first not null string
      */
 	public static String getNotNullFirstStr(String... paras) {
 		String rs = "";
@@ -257,6 +288,8 @@ public class StrKit {
 
     /**
      *  从List中 拼接字符串 fix做结合
+     * @param strList,fix input param
+     * @return return string of list append by fix
      */
 	public static String getSplitStr(List<String> strList,String fix){
 		StringBuilder sb = new StringBuilder();
@@ -274,6 +307,8 @@ public class StrKit {
 
     /**
      * 增加一个方法，处理返回的对象，形成String
+     * @param obj,dateFormat input param
+     * @return return str by obj
      */
 	public static String getStrByObj(Object obj,String dateFormat){
 		String rs = "";
@@ -298,13 +333,11 @@ public class StrKit {
 	}
 
     /**
-     *  增加一个方法，处理返回的对象，形成String
+     * 增加一个方法，处理返回的对象，形成String
+     * @param obj input param
+     * @return return str by obj
      */
 	public static String getStrByObj(Object obj){
 		return getStrByObj(obj,DateKit.dateFormat);
 	}
 }
-
-
-
-

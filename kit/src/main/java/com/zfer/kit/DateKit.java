@@ -25,7 +25,8 @@ import org.joda.time.format.DateTimeFormat;
 public class DateKit {
 	
 	//这个类不能实例化
-	private DateKit() {}
+	private DateKit() {
+	}
 	
 	//yyyy-MM-dd HH:mm:ss.SSS
 	public static String dateFormat = "yyyy-MM-dd";
@@ -186,24 +187,18 @@ public class DateKit {
 	
 	//date类型的转换
 	public static java.util.Date transDate(Object dateObj){
-		java.util.Date date = new java.util.Date();
 		long timeLong = 0;
 		if(dateObj instanceof java.util.Date){
-			timeLong = ((java.util.Date)date).getTime();
+			timeLong = ((java.util.Date)dateObj).getTime();
 		}else if(dateObj instanceof java.sql.Date){
-			timeLong = ((java.sql.Date)date).getTime();
+			timeLong = ((java.sql.Date)dateObj).getTime();
 		}else if(dateObj instanceof java.sql.Timestamp){
-			timeLong = ((java.sql.Timestamp)date).getTime();
+			timeLong = ((java.sql.Timestamp)dateObj).getTime();
 		}else if(dateObj instanceof java.sql.Time){
-			timeLong = ((java.sql.Time)date).getTime();
+			timeLong = ((java.sql.Time)dateObj).getTime();
 		}
-		date = new java.util.Date(timeLong);
+		java.util.Date date = new java.util.Date(timeLong);
 		return date;
-	}
-	
-	
-	
-	public static void main(String[] args) {
 	}
 }
 
