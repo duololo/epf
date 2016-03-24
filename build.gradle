@@ -28,7 +28,7 @@ subprojects {
 
 
     checkstyle{
-        configFile = file("$rootProject.projectDir/config/checkstyle/default_checks.xml")
+        configFile = file("$rootProject.projectDir/config/checkstyle/default-checks.xml")
     }
 
     findbugs{

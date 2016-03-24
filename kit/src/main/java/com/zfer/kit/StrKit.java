@@ -33,15 +33,15 @@ import java.util.regex.Pattern;
 public class StrKit {
 
     /**
-     * init
+     * init.
      */
     private StrKit() {
         super();
     }
 
     /**
-     * 首字母变小写
-     * <p>the first char to lower<br>
+     * 首字母变小写.
+     * <p>the first char to lower.<br>
      *
      * @param str the want to change string
      * @return return changed string
@@ -57,8 +57,8 @@ public class StrKit {
     }
 
     /**
-     * 首字母变大写
-     * <p>the first char to upper<br>
+     * 首字母变大写.
+     * <p>the first char to upper.<br>
      *
      * @param str the want to change string
      * @return return changed string
@@ -74,7 +74,7 @@ public class StrKit {
     }
 
     /**
-     * 字符串为 null 或者为  "" 时返回 true
+     * 字符串为 null 或者为  "" 时返回 true.
      *
      * @param str judge words
      * @return if str is null or "" return true,else false
@@ -84,7 +84,7 @@ public class StrKit {
     }
 
     /**
-     * 如果其中一个字符串为 null 或者为  "" 时返回 true
+     * 如果其中一个字符串为 null 或者为  "" 时返回 true.
      *
      * @param strings judge words
      * @return if one str is null or "" return true,else false
@@ -102,7 +102,7 @@ public class StrKit {
     }
 
     /**
-     * 字符串不为 null 而且不为  "" 时返回 true
+     * 字符串不为 null 而且不为  "" 时返回 true.
      *
      * @param str judge words
      * @return 字符串不为 null 而且不为  "" 时返回 true
@@ -112,7 +112,7 @@ public class StrKit {
     }
 
     /**
-     * 所有字符串不为 null 而且不为  "" 时返回 true
+     * 所有字符串不为 null 而且不为  "" 时返回 true.
      *
      * @param strings judge words
      * @return 所有字符串不为 null 而且不为  "" 时返回 true
@@ -130,7 +130,7 @@ public class StrKit {
     }
 
     /**
-     * 所有对象为 null 时返回 true
+     * 所有对象为 null 时返回 true.
      *
      * @param paras judge objects
      * @return 所有对象为 null 时返回 true
@@ -148,7 +148,7 @@ public class StrKit {
     }
 
     /**
-     * 所有对象不为 null 时返回 true
+     * 所有对象不为 null 时返回 true.
      *
      * @param paras judge objects
      * @return 所有对象不为 null 时返回 true
@@ -166,8 +166,8 @@ public class StrKit {
     }
 
     /**
-     * to utf8 string
-     * js可以用decodeURI(msg)反向解码
+     * to utf8 string.
+     * js可以用decodeURI(msg)反向解码.
      *
      * @param str want to change word
      * @return utf8 string of str
@@ -175,23 +175,23 @@ public class StrKit {
     public static String toUtf8String(String str) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            if (c <= 255) {
-                sb.append(c);
+            char charAt = str.charAt(i);
+            if (charAt <= 255) {
+                sb.append(charAt);
             } else {
-                byte[] b;
+                byte[] bytes;
                 try {
-                    b = Character.toString(c).getBytes("utf-8");
+                    bytes = Character.toString(charAt).getBytes("utf-8");
                 } catch (UnsupportedEncodingException e) {
-                    b = new byte[0];
+                    bytes = new byte[0];
                 }
 
-                for (byte aB : b) {
-                    int k = aB;
-                    if (k < 0) {
-                        k += 256;
+                for (byte ab : bytes) {
+                    int abk = ab;
+                    if (abk < 0) {
+                        abk += 256;
                     }
-                    sb.append("%").append(Integer.toHexString(k).toUpperCase());
+                    sb.append("%").append(Integer.toHexString(abk).toUpperCase());
                 }
             }
         }
@@ -199,8 +199,8 @@ public class StrKit {
     }
 
     /**
-     * 获取字符串对象，为Null或者为空字符串,返回""
-     * 可能会有空白字符产生
+     * 获取字符串对象，为Null或者为空字符串,返回"".
+     * 可能会有空白字符产生.
      *
      * @param obj input param
      * @return string of obj
@@ -210,8 +210,8 @@ public class StrKit {
     }
 
     /**
-     * 获取字符串对象，为Null或者为空字符串,返回defaultString
-     * 可能会有空白字符产生
+     * 获取字符串对象，为Null或者为空字符串,返回defaultString.
+     * 可能会有空白字符产生.
      *
      * @param obj input param
      * @param defaultStr input param
@@ -222,7 +222,7 @@ public class StrKit {
     }
 
     /**
-     * 获取字符串对象，为Null或者为空字符串,返回""，并且会trim
+     * 获取字符串对象，为Null或者为空字符串,返回""，并且会trim.
      *
      * @param obj input param
      * @return string of obj,if is blank return defaultStr and trim
@@ -232,7 +232,7 @@ public class StrKit {
     }
 
     /**
-     * 获取字符串对象，为Null或者为空字符串,返回defaultString，并且会trim
+     * 获取字符串对象，为Null或者为空字符串,返回defaultString，并且会trim.
      *
      * @param obj input param
      * @param defaultStr param
@@ -243,7 +243,7 @@ public class StrKit {
     }
 
     /**
-     * 多个相同的字符替换：比如将其中所有的问号，挨个换成数组内的值
+     * 多个相同的字符替换：比如将其中所有的问号，挨个换成数组内的值.
      *
      * @param str input param
      * @param fix input param
@@ -259,7 +259,7 @@ public class StrKit {
     }
 
     /**
-     * 对所有的问号替换
+     * 对所有的问号替换.
      *
      * @param str input param
      * @param array input param
@@ -273,7 +273,7 @@ public class StrKit {
 
 
     /**
-     * 是否包含中文
+     * 是否包含中文.
      *
      * @param str input param
      * @return if contains Chinese Char return true,else false
@@ -289,7 +289,7 @@ public class StrKit {
     }
 
     /**
-     * 将所有对象中不为空的第一个字符串筛选出来，如果都为空，返回""
+     * 将所有对象中不为空的第一个字符串筛选出来，如果都为空，返回"".
      *
      * @param paras input param
      * @return first not null string
@@ -309,7 +309,7 @@ public class StrKit {
     }
 
     /**
-     * 从List中 拼接字符串 fix做结合
+     * 从List中 拼接字符串 fix做结合.
      *
      * @param strList input param
      * @param fix input param
@@ -330,7 +330,7 @@ public class StrKit {
     }
 
     /**
-     * 增加一个方法，处理返回的对象，形成String
+     * 增加一个方法，处理返回的对象，形成String.
      *
      * @param obj input param
      * @param dateFormat input param
@@ -359,7 +359,7 @@ public class StrKit {
     }
 
     /**
-     * 增加一个方法，处理返回的对象，形成String
+     * 增加一个方法，处理返回的对象，形成String.
      *
      * @param obj input param
      * @return return str by obj

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE module PUBLIC
     "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
-    "http://www.puppycrawl.com/dtds/configuration_1_1.dtd">
+        "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 
 <!--
   Checkstyle configuration for CS 1114, Virginia Tech
@@ -14,9 +14,9 @@
     <!-- module name="NewlineAtEndOfFile"/
         Doesn't seem to work under windows or something: false triggering!
     -->
-
-
+    <!-- 设置每行是否可以有Tab键  -->
     <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
     </module>
 
     <module name="FileLength">
@@ -24,6 +24,39 @@
     </module>
 
     <module name="TreeWalker">
+
+        <!-- 杂项 -->
+        <!-- 检查并确保所有的常量中的L都是大写的。因为小写的字母l跟数字1太象了 -->
+        <module name="UpperEll" />
+        <!-- 检查数组类型的定义是String[] args，而不是String args[] -->
+        <module name="ArrayTypeStyle" />
+        <!-- 检查java代码的缩进 默认配置：基本缩进 4个空格，新行的大括号：0。新行的case 4个空格 -->
+        <module name="Indentation" />
+
+        <module name="PackageName">
+            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+        </module>
+        <module name="TypeName">
+        </module>
+        <module name="MemberName">
+            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="ParameterName">
+            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+        </module>
+        <module name="LocalVariableName">
+            <property name="tokens" value="VARIABLE_DEF"/>
+            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+            <property name="allowOneCharVarInForLoop" value="true"/>
+        </module>
+        <module name="ClassTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+        </module>
+        <module name="MethodTypeParameterName">
+            <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+        </module>
+
+
 
         <property name="tabWidth" value="4" />
 
@@ -297,5 +330,6 @@
         <property name="message"
             value="Place the date after the @version tag."/>
     </module>
+
 
 </module>
