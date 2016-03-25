@@ -20,6 +20,7 @@ import org.apache.commons.lang.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -350,7 +351,8 @@ public class StrKit {
                 || obj instanceof java.sql.Time
                 || obj instanceof java.sql.Timestamp
                 || obj instanceof java.util.Date) {
-            rs = DateKit.toStr(DateKit.transDate(obj), dateFormat);
+            Date dateObj = (Date) DateKit.transDateObj2UtilDate(obj);
+            rs = DateKit.toStr(dateObj, dateFormat);
         } else {
             rs = obj.toString();
         }
@@ -365,6 +367,6 @@ public class StrKit {
      * @return return str by obj
      */
     public static String getStrByObj(Object obj) {
-        return getStrByObj(obj, DateKit.dateFormat);
+        return getStrByObj(obj, DateKit.DATE_TIME_FORMAT);
     }
 }

@@ -168,7 +168,7 @@ public class StrKitTest {
         java.util.Date date = new Date(1458704405425L);
 
         String str = StrKit.getStrByObj(date);
-        assertEquals("2016-03-23",str);
+        assertEquals("2016-03-23 11:40:05",str);
 
 
         assertEquals("300.00",StrKit.getStrByObj(new BigDecimal("300.00"),"yyyy-MM-dd HH"));
