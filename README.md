@@ -1,7 +1,7 @@
 # kit-excel的使用
 ------
 ## 功能说明
-将excel中的行数据，导入成List&lt;VO>
+支持excel几百列配置化方式，将excel中的行数据，导成List<VO>的工具，方便开发
 
 ## 目录说明
 *   kit 模块：基础工具类
